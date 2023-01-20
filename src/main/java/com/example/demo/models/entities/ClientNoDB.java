@@ -1,20 +1,20 @@
-package com.example.demo.models;
+package com.example.demo.models.entities;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-public class Client {
+public class ClientNoDB {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String cpf;
 
-    public Client(Long id) {
+    public ClientNoDB(Long id) {
     }
 
-    public Client(Long id, String name, String cpf) {
+    public ClientNoDB(Long id, String name, String cpf) {
         this.id = id;
         this.name = name;
         this.cpf = cpf;
