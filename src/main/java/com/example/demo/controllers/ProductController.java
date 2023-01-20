@@ -28,6 +28,20 @@ public class ProductController {
     }
     // as duas formas acima funcionam: seja recebendo cada atributo individualmente, ou recebendo o próprio objeto completo.
 
+    @PutMapping
+    public Product alterProduct(Product product) {
+        productRepository.save(product);
+        return product;
+    }
+
+    // método newProduct é exatamente igual ao alterProduct, então podemos simplificar utilizando o method = {passar uma lista!}
+    // esse método saveProduct faz o papel dos métodos newProduct e alterProduct. Poderia comentar os dois.
+    @RequestMapping(method = {RequestMethod.POST, RequestMethod.PUT})
+    public Product saveProduct(Product product){
+        productRepository.save(product);
+        return product;
+    }
+
     @GetMapping()
     public Iterable<Product> getAllProducts() {
         return productRepository.findAll();
@@ -38,4 +52,11 @@ public class ProductController {
         return productRepository.findById(id);
         // como é uma variável que está presente dentro da URL, utilizamos @PathVariable
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteProduct(@PathVariable int id) {
+        productRepository.deleteById(id);
+    }
+
+
 }
